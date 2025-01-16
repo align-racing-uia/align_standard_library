@@ -27,6 +27,8 @@ This is the repository for Align Standard Library (ASL).
 
 The library is currently undergoing a major overhaul, and will be more directed towards a STM32 ecosystem, unlike the Arduino and ATmega targets it usually have targeted.
 The library is following a CMake build structure, with the goal that everything should be relatively easy to implement in custom projects, by simply adding the subdirectory, and including the libraries.
+
+It will also include simple VSCode configs, and batch/powershell scripts to easily be able to set up new development enviroments for STM32 development.
 ## Rules 
 
 
