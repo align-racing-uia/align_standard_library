@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.22)
 
 project(rtt)
 
-add_library(rtt)
+add_library(rtt INTERFACE)
 
 target_include_directories(rtt INTERFACE
     ${CMAKE_CURRENT_SOURCE_DIR}/repo/RTT/
