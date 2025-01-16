@@ -26,7 +26,7 @@ This is the repository for Align Standard Library (ASL).
 <a href="http://www.alignracing.no/">Align Racing UiA (AR)</a> is a multidisciplinary student organisation at <a href="https://www.uia.no/">The University of Agder (UiA)</a>, that take part in the world’s largest yearly engineering competition; <a href="https://www.imeche.org/events/formula-student">Formula Student (FS)</a>. The organisation continuously consists of around 60 students, from a wide variety of disciplines. The competition includes developing, building, budgeting and marketing a small scale formula type racing car. AR takes this a bit further by having more focus on developing a strong organisation, open for all disciplines, that gives the members a taste of future work-life.
 
 The library is currently undergoing a major overhaul, and will be more directed towards a STM32 ecosystem, unlike the Arduino and ATmega targets it usually have targeted.
-
+The library is following a CMake build structure, with the goal that everything should be relatively easy to implement in custom projects, by simply adding the subdirectory, and including the libraries.
 ## Rules 
 
 
