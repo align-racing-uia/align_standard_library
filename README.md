@@ -32,6 +32,15 @@ The libraries in this repository is following a CMake build structure, with the 
 
 The build tools used internaly are currently based on the "STM32 VS Code extension", to simplify the process of building, and flashing projects onto the microcontrollers through an STLink.
 
+## How do we solve print functionality whilst using STM32 VS Code extension?
+We use RTT through the awesome RTT implementation created by Segger. In this repository it is found in a lightly modified format, to be able to add the CMake file to it easily. (Together with the proper license, of course)
+
+The best solution the team has found as of now, is to use the functionality of the program "strtt".
+The best way to add it to your own project, is to simply add it as a submodule to your project, using
+`git submodule add https://github.com/phryniszak/strtt programs/strtt`
+
+and then making sure to launch it in parallell to building your program.
+
 ## Rules 
 
 
