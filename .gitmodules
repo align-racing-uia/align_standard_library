@@ -1,3 +1,6 @@
 [submodule "programs/strtt"]
 	path = programs/strtt
 	url = https://github.com/phryniszak/strtt
+[submodule "libs/rtt/repo"]
+	path = libs/rtt/repo
+	url = https://github.com/SEGGERMicro/RTT

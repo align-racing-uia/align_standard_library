@@ -32,16 +32,29 @@ The libraries in this repository is following a CMake build structure, with the 
 
 The build tools used internaly are currently based on the "STM32 VS Code extension", to simplify the process of building, and flashing projects onto the microcontrollers through an STLink.
 
+## How to use the ASL?
+If you have the required space to download everything, the simplest way to include all the functionality of the ASL to your own project, is to add it as a submodule.
+
+`git submodule add -b AR25 https://github.com/align-racing-uia/align_standard_library asl`
+
+Then add it to your project by adding
+
+`
+add_subdirectory(asl)
+
+target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE
+  asl
+)
+`
+
+To your `CMakeLists.txt`.
+
 ## How do we solve print functionality whilst using STM32 VS Code extension?
-We use RTT through the awesome RTT implementation created by Segger. In this repository it is found in a lightly modified format, to be able to add the CMake file to it easily. (Together with the proper license, of course)
-
-The best solution the team has found as of now, is to use the functionality of the program "strtt".
-The best way to add it to your own project, is to simply add it as a submodule to your project, using
-`git submodule add https://github.com/phryniszak/strtt programs/strtt`
-
-and then making sure to launch it in parallell to building your program.
+We use RTT through the awesome RTT implementation created by Segger. In this repository it is added as a submodule, with a light CMakeLists to make it easy to implement into custom programs.
+As the team is using STLinks for programming, and not JLinks, the best solution the team has found to actually watch the RTT stream as of now, is to use the functionality of the program "strtt".
 
 ## Rules 
+1. If a program from an external repo is to be added as a library, make sure to create a new folder for it in the `libs` folder, together with a `CMakeLists.txt`. It is also prefered if the library is added as a submodule instead of a 
 
 
 			
