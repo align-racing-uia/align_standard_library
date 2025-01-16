@@ -39,22 +39,26 @@ If you have the required space to download everything, the simplest way to inclu
 
 Then add it to your project by adding
 
-`
+```
 add_subdirectory(asl)
 
 target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE
   asl
 )
-`
+```
+To your `CMakeLists.txt`, then run
 
-To your `CMakeLists.txt`.
+```
+cd asl
+git submodule update --init
+```
 
 ## How do we solve print functionality whilst using STM32 VS Code extension?
 We use RTT through the awesome RTT implementation created by Segger. In this repository it is added as a submodule, with a light CMakeLists to make it easy to implement into custom programs.
 As the team is using STLinks for programming, and not JLinks, the best solution the team has found to actually watch the RTT stream as of now, is to use the functionality of the program "strtt".
 
 ## Rules 
-1. If a program from an external repo is to be added as a library, make sure to create a new folder for it in the `libs` folder, together with a `CMakeLists.txt`. It is also prefered if the library is added as a submodule instead of a 
+1. If a program from an external repo is to be added as a library, make sure to create a new folder for it in the `libs` folder, together with a `CMakeLists.txt`. It is also prefered if external libraries is added as a submodules.
 
 
 			
