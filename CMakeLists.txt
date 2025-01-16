@@ -4,10 +4,8 @@ project(asl)
 
 add_library(asl INTERFACE)
 
-add_subdirectory(asl INTERFACE
-    ${CMAKE_CURRENT_SOURCE_DIR}/libs/rtt
-    ${CMAKE_CURRENT_SOURCE_DIR}/libs/align
-)
+add_subdirectory(libs/rtt)
+add_subdirectory(libs/align)
 
 target_link_libraries(asl INTERFACE
     rtt
