@@ -35,7 +35,10 @@ The build tools used internaly are currently based on the "STM32 VS Code extensi
 ## How to use the ASL?
 If you have the required space to download everything, the simplest way to include all the functionality of the ASL to your own project, is to add it as a submodule.
 
-`git submodule add -b AR25 https://github.com/align-racing-uia/align_standard_library asl`
+```
+git init
+git submodule add -b AR25 https://github.com/align-racing-uia/align_standard_library asl
+```
 
 Then add it to your project by adding
 
