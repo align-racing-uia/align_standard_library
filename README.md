@@ -49,11 +49,16 @@ target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE
   asl
 )
 ```
-To your `CMakeLists.txt`, then run
+To your `CMakeLists.txt`.
+Then run to download all libraries:
 
 ```
 cd asl
 git submodule update --init
+```
+To setup a HAL development enviroment for the STM32, you will have to define the microcontroller you use in `CMakeLists.txt`, in the following format:
+```
+add_definitions(-DSTM32G431xx)
 ```
 
 ## How do we solve print functionality whilst using STM32 VS Code extension?
