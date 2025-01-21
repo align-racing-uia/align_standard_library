@@ -30,7 +30,14 @@ This is the repository for Align Standard Library (ASL).
 This repository is currently undergoing a major overhaul, and will be more directed towards a STM32 ecosystem, unlike the Arduino and ATmega targets it usually have targeted.
 The libraries in this repository is following a CMake build structure, with the goal that everything should be relatively easy to implement in custom projects, by simply adding the subdirectory, and including the libraries.
 
-The build tools used internaly are currently based on the "STM32 VS Code extension", to simplify the process of building, and flashing projects onto the microcontrollers through an STLink.
+The build tools used internaly are currently based on the "STM32 VS Code extension" combined with CMake, to simplify the process of building, and flashing projects onto the microcontrollers through an STLink.
+
+## How does Align Racing setup STM32 Projects?
+First make sure you have STM32CubeCLT and STM32CubeMX.
+
+With those, open STM32CubeMX and setup and configure a CMake project.
+
+If you need this library, include it.
 
 ## How to use the ASL?
 If you have the required space to download everything, the simplest way to include all the functionality of the ASL to your own project, is to add it as a submodule.
@@ -49,7 +56,8 @@ target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE
   asl
 )
 ```
-To your `CMakeLists.txt`, then run
+To your `CMakeLists.txt`.
+Then run to download all libraries:
 
 ```
 cd asl
