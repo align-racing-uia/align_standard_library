@@ -32,6 +32,13 @@ The libraries in this repository is following a CMake build structure, with the 
 
 The build tools used internaly are currently based on the "STM32 VS Code extension" combined with CMake, to simplify the process of building, and flashing projects onto the microcontrollers through an STLink.
 
+## How does Align Racing setup STM32 Projects?
+First make sure you have STM32CubeCLT and STM32CubeMX.
+
+With those, open STM32CubeMX and setup and configure a CMake project.
+
+If you need this library, include it.
+
 ## How to use the ASL?
 If you have the required space to download everything, the simplest way to include all the functionality of the ASL to your own project, is to add it as a submodule.
 
@@ -55,12 +62,6 @@ Then run to download all libraries:
 ```
 cd asl
 git submodule update --init
-```
-To setup a HAL development enviroment for the STM32, you will have to define the microcontroller, and the following flag in your compiler definitions in `CMakeLists.txt`,
-like this:
-```
-add_definitions(-DSTM32G431xx)
-add_definitions(-DUSE_HAL_DRIVER)
 ```
 
 ## How do we solve print functionality whilst using STM32 VS Code extension?
