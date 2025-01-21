@@ -4,6 +4,3 @@
 [submodule "libs/rtt/repo"]
 	path = libs/rtt/repo
 	url = https://github.com/SEGGERMicro/RTT
-[submodule "libs/align"]
-	path = libs/align
-	url = https://github.com/align-racing-uia/Align-STM32G4
