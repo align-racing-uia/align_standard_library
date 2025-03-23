@@ -71,7 +71,13 @@ As the team is using STLinks for programming, and not JLinks, the best solution 
 ## Rules 
 1. If a program from an external repo is to be added as a library, make sure to create a new folder for it in the `libs` folder, together with a `CMakeLists.txt`. It is also prefered if external libraries is added as a submodules.
 
-
+## Common issues when using STM32 CLT on Linux
+If you have problems with missing libncurses.so.5 on a debian based linux, add:
+deb http://security.ubuntu.com/ubuntu focal-security main universe
+To
+sudo nano /etc/apt/sources.list
+and run
+sudo apt-get install libncurses5
 			
 ## Contributions
 
@@ -97,3 +103,5 @@ Under the following terms:
      alt="License"
      width="300" />
 </p>
+
+
