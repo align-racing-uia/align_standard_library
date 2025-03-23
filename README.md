@@ -73,11 +73,16 @@ As the team is using STLinks for programming, and not JLinks, the best solution 
 
 ## Common issues when using STM32 CLT on Linux
 If you have problems with missing libncurses.so.5 on a debian based linux, add:
-deb http://security.ubuntu.com/ubuntu focal-security main universe
+
+`deb http://security.ubuntu.com/ubuntu focal-security main universe`
+
 To
-sudo nano /etc/apt/sources.list
+
+`sudo nano /etc/apt/sources.list`
+
 and run
-sudo apt-get install libncurses5
+
+`sudo apt-get install libncurses5`
 			
 ## Contributions
 
