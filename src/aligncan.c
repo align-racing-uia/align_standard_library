@@ -58,7 +58,7 @@ Align_StatusTypeDef Align_CAN_Init(FDCAN_HandleTypeDef *hfdcan, Align_CAN_SpeedT
         {
         case ALIGN_CAN_SPEED_500KBPS:
             hfdcan->Init.ClockDivider = FDCAN_CLOCK_DIV1;
-            hfdcan->Init.NominalPrescaler = 8;
+            hfdcan->Init.NominalPrescaler = 5;
             hfdcan->Init.NominalSyncJumpWidth = 1;
             hfdcan->Init.NominalTimeSeg1 = 6;
             hfdcan->Init.NominalTimeSeg2 = 1;
