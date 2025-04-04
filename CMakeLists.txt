@@ -22,7 +22,7 @@ target_sources(asl_can INTERFACE
     src/aligncan.c
 )
 target_sources(asl_utils INTERFACE
-    src/aligncan.c
+    src/alignutils.c
 )
 
 target_link_libraries(asl INTERFACE
