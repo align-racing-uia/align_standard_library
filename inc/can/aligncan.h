@@ -15,6 +15,7 @@ Align_StatusTypeDef Align_CAN_Init(FDCAN_HandleTypeDef *hfdcan, Align_CAN_SpeedT
 Align_StatusTypeDef Align_CAN_Send(FDCAN_HandleTypeDef *hfdcan, uint32_t id, uint8_t *data, uint8_t len, bool ext);
 
 bool Align_CAN_Receive(FDCAN_HandleTypeDef *hfdcan, FDCAN_RxHeaderTypeDef *rxHeader, uint8_t *rxData);
-
+void Align_SplitCanId(uint32_t can_id, uint16_t *packet_id, uint16_t *node_id, bool is_extended);
+uint32_t Align_CombineCanId(uint16_t packet_id, uint16_t node_id, bool is_extended);
 
 #endif // ALIGN_CAN_H

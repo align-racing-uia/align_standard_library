@@ -136,3 +136,23 @@ bool Align_CAN_Receive(FDCAN_HandleTypeDef *hfdcan, FDCAN_RxHeaderTypeDef *rxHea
     }
     return false;
 }
+
+void Align_SplitCanId(uint32_t can_id, uint16_t *packet_id, uint16_t *node_id, bool is_extended){
+    if(is_extended){
+      *packet_id = (can_id >> 8);
+      *node_id = can_id & 0xFF;
+    }else{
+      *packet_id = (can_id >> 5);
+      *node_id = can_id & 0x1F;
+    }
+  }
+  
+  
+  uint32_t Align_CombineCanId(uint16_t packet_id, uint16_t node_id, bool is_extended){
+    if(is_extended){
+      return ((uint32_t)packet_id << 8) | ((uint32_t)node_id & 0xFF);
+    }else{
+      return ((uint32_t)packet_id << 5) | ((uint32_t)node_id & 0x1F);
+    }
+  
+  }
