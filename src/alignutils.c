@@ -13,11 +13,7 @@ void Align_DelayUs(TIM_HandleTypeDef *htim, uint16_t us){
   if(target < begin){
     // Overflow
     // Check if the timer is using a 16 bit timer or 32 bit timer
-    if(begin > UINT16_MAX){
-      target = target - UINT32_MAX;
-    }else{
-      target = target - UINT16_MAX;
-    }
+    target = target - htim->Instance->ARR;
   }
   while(htim->Instance->CNT < target){}
 
