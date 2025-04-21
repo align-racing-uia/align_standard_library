@@ -111,6 +111,7 @@ Align_StatusTypeDef Align_CAN_Send(FDCAN_HandleTypeDef *hfdcan, uint32_t id, uin
     txHeader.BitRateSwitch = FDCAN_BRS_OFF;
     txHeader.FDFormat = FDCAN_CLASSIC_CAN;
     txHeader.TxEventFifoControl = FDCAN_NO_TX_EVENTS;
+    
     txHeader.MessageMarker = 0;
     if(ext){
         txHeader.IdType = FDCAN_EXTENDED_ID;
