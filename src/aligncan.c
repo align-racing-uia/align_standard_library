@@ -16,6 +16,7 @@ Align_StatusTypeDef Align_CAN_Init(FDCAN_HandleTypeDef *hfdcan, Align_CAN_SpeedT
     hfdcan->Instance = fdcan_instance;
     hfdcan->Init.FrameFormat = FDCAN_FRAME_CLASSIC;
     hfdcan->Init.Mode = FDCAN_MODE_NORMAL;
+    // hfdcan->Init.Mode = FDCAN_MODE_EXTERNAL_LOOPBACK;
     hfdcan->Init.AutoRetransmission = DISABLE;
     hfdcan->Init.TransmitPause = DISABLE;
     hfdcan->Init.ProtocolException = DISABLE;
@@ -31,14 +32,6 @@ Align_StatusTypeDef Align_CAN_Init(FDCAN_HandleTypeDef *hfdcan, Align_CAN_SpeedT
     hfdcan->Init.DataSyncJumpWidth = 1;
     hfdcan->Init.DataTimeSeg1 = 1;
     hfdcan->Init.DataTimeSeg2 = 1;
-
-#if defined(ALIGN_CAN_USE_BUFFER)
-
-    // We need to override the default TX Complete Callback
-    // HAL_FDCAN_RegisterCallback(hfdcan, HAL_FDCAN_TX_FIFO_EMPTY_CB_ID, Align_CAN_MessageSentCallback);
-    HAL_FDCAN_RegisterTxBufferCompleteCallback(hfdcan, Align_CAN_MessageSentCallback);
-
-#endif
 
     switch (HSE_VALUE)
     {
@@ -109,6 +102,20 @@ Align_StatusTypeDef Align_CAN_Init(FDCAN_HandleTypeDef *hfdcan, Align_CAN_SpeedT
     {
         return ALIGN_ERROR;
     }
+
+#if defined(ALIGN_CAN_USE_BUFFER)
+
+    // We need to override the default TX Complete Callback
+    // HAL_FDCAN_RegisterCallback(hfdcan, HAL_FDCAN_TX_FIFO_EMPTY_CB_ID, Align_CAN_MessageSentCallback);
+    HAL_StatusTypeDef status = HAL_FDCAN_RegisterTxBufferCompleteCallback(hfdcan, &Align_CAN_MessageSentCallback);
+    if (status != HAL_OK)
+    {
+        return ALIGN_ERROR;
+    }
+
+    HAL_FDCAN_ActivateNotification(hfdcan, FDCAN_IT_TX_COMPLETE, FDCAN_TX_BUFFER0 | FDCAN_TX_BUFFER1 | FDCAN_TX_BUFFER2); // Enable the TX buffer empty interrupt
+
+#endif
 
     if (HAL_FDCAN_Start(hfdcan) != HAL_OK)
     {
@@ -189,7 +196,6 @@ uint32_t Align_CombineCanId(uint16_t packet_id, uint16_t node_id, bool is_extend
 
 #if defined(ALIGN_CAN_USE_BUFFER)
 
-
 bool Align_CAN_AddToBuffer(FDCAN_HandleTypeDef *hfdcan, uint32_t id, uint8_t *data, uint8_t len, bool ext)
 {
 
@@ -240,7 +246,8 @@ void Align_CAN_MessageSentCallback(FDCAN_HandleTypeDef *hfdcan, uint32_t buffers
     if (Align_CAN_BufferCount > 0)
     {
         // Send the next message in the buffer
-        if(HAL_FDCAN_AddMessageToTxFifoQ(hfdcan, &Align_CAN_Buffer[Align_CAN_BufferReadIndex].header, Align_CAN_Buffer[Align_CAN_BufferReadIndex].data) == HAL_OK){
+        if (HAL_FDCAN_AddMessageToTxFifoQ(hfdcan, &Align_CAN_Buffer[Align_CAN_BufferReadIndex].header, Align_CAN_Buffer[Align_CAN_BufferReadIndex].data) == HAL_OK)
+        {
             Align_CAN_BufferCount--;
             Align_CAN_BufferReadIndex++;
             Align_CAN_BufferReadIndex %= ALIGN_CAN_BUFFER_SIZE;
