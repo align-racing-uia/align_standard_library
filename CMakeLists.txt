@@ -30,7 +30,7 @@ target_sources(asl_utils INTERFACE
     src/alignutils.c
 )
 
-target_sources(asl INTERFACE
+target_sources(asl_events INTERFACE
     src/alignevents.c
 )
 
