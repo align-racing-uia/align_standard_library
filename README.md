@@ -90,7 +90,7 @@ If you would like to add another feature gate, take a look in the `CMakeLists.tx
 ## How do we solve print functionality whilst using STM32 VS Code extension?
 We are mainly using an STLink to do debugging, but sometimes it is nice to be able to print messages to a console. 
 To do this, we use RTT through the official RTT implementation created by Segger. In this repository it is added as a submodule, with a light CMakeLists to make it easy to implement it into custom programs.
-As the team is using STLinks for programming, and not JLinks, the best solution the team has found to see RTT stream, is to use the functionality of the program "strtt". Note, this only works on Windows. 
+As the team is using STLinks for programming, and not JLinks, the best solution the team has found to see RTT stream, is to use the functionality of the program "strtt". Note, this only works on Windows. On linux you can try to use a <a href="https://github.com/phryniszak/jstlink">webbased solution</a> instead.
 
 ## Rules 
 1. If a program from an external repo is to be added as a library, make sure to create a new folder for it in the `libs` folder, together with a `CMakeLists.txt`. It is also prefered if external libraries is added as a submodules.
