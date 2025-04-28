@@ -60,7 +60,7 @@ target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE
 )
 ```
 To your `CMakeLists.txt`.
-Then run to download all libraries, run the current command in the main project folder:
+Then, to download all external libraries as well, run the current command in the main project folder:
 
 ```
 git submodule update --init --recursive
