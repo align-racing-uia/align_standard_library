@@ -41,7 +41,7 @@ If you need this library, include it.
 
 ## How to use the ASL?
 If you have the required space to download everything, the simplest way to include all the functionality of the ASL to your own project, is to add it as a submodule.
-
+Note: To be able to use all the functionality in asl normally, you have to make sure to generate all STM32 peripherals as a file pair. This is done by enabling it under "Project Manager" and "Code Generation" in CubeMX.
 ```
 git init
 git submodule add -b AR25 https://github.com/align-racing-uia/align_standard_library asl
@@ -54,19 +54,43 @@ add_subdirectory(asl)
 
 target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE
   asl
+  asl_utils (optional, needs a timer as described in the header file)
+  asl_can (optional, needs fdcan)
+  asl_events (optional, needs a timer and interrupts)
 )
 ```
 To your `CMakeLists.txt`.
-Then run to download all libraries:
+Then, to download all external libraries as well, run the current command in the main project folder:
 
 ```
-cd asl
-git submodule update --init
+git submodule update --init --recursive
 ```
+## How to update ASL?
+If you need to update to a newer version of ASL in your project, the easiest way to do it is to delete the align standard library folder, and rerun:
+```
+git submodule update --init --recursive
+```
+If that doesnt work, or you want to develop asl further whilst using it for your project, you can do the following instead:
+```
+cd <asl folder goes here>
+git checkout AR25 (only needed the first time)
+git pull
+```
+
+To upload your changes to asl
+```
+cd <asl folder goes here>
+git add .
+git commit -m "A message explaining the changes youve made"
+git push
+```
+
+If you would like to add another feature gate, take a look in the `CMakeLists.txt` folder in asl, and try to copy the process. Remember to update this readme accordingly.
 
 ## How do we solve print functionality whilst using STM32 VS Code extension?
-We use RTT through the awesome RTT implementation created by Segger. In this repository it is added as a submodule, with a light CMakeLists to make it easy to implement into custom programs.
-As the team is using STLinks for programming, and not JLinks, the best solution the team has found to actually watch the RTT stream as of now, is to use the functionality of the program "strtt".
+We are mainly using an STLink to do debugging, but sometimes it is nice to be able to print messages to a console. 
+To do this, we use RTT through the official RTT implementation created by Segger. In this repository it is added as a submodule, with a light CMakeLists to make it easy to implement it into custom programs.
+As the team is using STLinks for programming, and not JLinks, the best solution the team has found to see RTT stream, is to use the functionality of the program "strtt". Note, this only works on Windows. On linux you can try to use a <a href="https://github.com/phryniszak/jstlink">webbased solution</a> instead.
 
 ## Rules 
 1. If a program from an external repo is to be added as a library, make sure to create a new folder for it in the `libs` folder, together with a `CMakeLists.txt`. It is also prefered if external libraries is added as a submodules.
