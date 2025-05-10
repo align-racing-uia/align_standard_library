@@ -30,10 +30,10 @@ void Align_Events_EventCallback(TIM_HandleTypeDef *htim)
         if (align_events.Events[i].LastTime + align_events.Events[i].CycleTime <= align_events.EventTimer)
         {
           bool done = align_events.Events[i].Fptr(align_events.Events[i].Data + (align_events.Events[i].DataIndex * align_events.Events[i].DataSize)); // Call the function pointer with the data
-          align_events.Events[i].DataIndex++;
-          align_events.Events[i].DataIndex %= 2;
           if(done){
             align_events.Events[i].LastTime = align_events.EventTimer; // Update the last time the event was triggered
+            align_events.Events[i].DataIndex++;
+            align_events.Events[i].DataIndex %= 2;
           }
         }
       }
