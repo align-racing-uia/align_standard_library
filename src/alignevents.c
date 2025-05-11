@@ -34,6 +34,7 @@ void Align_Events_EventCallback(TIM_HandleTypeDef *htim)
             align_events.Events[i].LastTime = align_events.EventTimer; // Update the last time the event was triggered
             align_events.Events[i].DataIndex++;
             align_events.Events[i].DataIndex %= 2;
+            
           }
         }
       }
