@@ -145,10 +145,13 @@ Align_StatusTypeDef Align_CAN_Send(FDCAN_HandleTypeDef *hfdcan, uint32_t id, uin
         txHeader.IdType = FDCAN_STANDARD_ID;
     }
 
-    HAL_StatusTypeDef ret = HAL_FDCAN_AddMessageToTxFifoQ(hfdcan, &txHeader, data);
-    if (ret != HAL_OK)
-    {
-        return ALIGN_ERROR;
+    int i = 0;
+    while(HAL_FDCAN_AddMessageToTxFifoQ(hfdcan, &txHeader, data) != HAL_OK){
+        i++;
+        if (i > 5){
+            return ALIGN_ERROR; // If we cannot send the message after 5 attempts, return an error
+        }
+        HAL_Delay(1); // Wait a bit before trying again
     }
     return ALIGN_OK;
 }
