@@ -29,7 +29,7 @@ void Align_Events_EventCallback(TIM_HandleTypeDef *htim)
       {
         if (align_events.Events[i].LastTime + align_events.Events[i].CycleTime <= align_events.EventTimer)
         {
-          bool done = align_events.Events[i].Fptr(align_events.Events[i].Data + (align_events.Events[i].DataIndex * align_events.Events[i].DataSize)); // Call the function pointer with the data
+          bool done = align_events.Events[i].Fptr(((unsigned char *)align_events.Events[i].Data) + (align_events.Events[i].DataIndex * align_events.Events[i].DataSize)); // Call the function pointer with the data
           if(done){
             align_events.Events[i].LastTime = align_events.EventTimer; // Update the last time the event was triggered
             align_events.Events[i].DataIndex++;
@@ -52,7 +52,7 @@ void Align_Events_UpdateEventData(Align_Events_EventTypeDef *event, void *data)
 
   uint8_t new_index = event->DataIndex + 1;
   new_index %= event->BufferSize; // Get the next index
-  memcpy(event->Data + (event->DataSize * new_index), data, event->DataSize); // Copy the data to the second buffer
+  memcpy(((unsigned char *)event->Data) + (event->DataSize * new_index), data, event->DataSize); // Copy the data to the second buffer
 
   event->DataIndex = new_index;
 }
