@@ -35,6 +35,33 @@ Align_StatusTypeDef Align_CAN_Init(FDCAN_HandleTypeDef *hfdcan, Align_CAN_SpeedT
 
     switch (HSE_VALUE)
     {
+    case 8000000:
+        switch (can_speed)
+        {
+        case ALIGN_CAN_SPEED_500KBPS:
+            hfdcan->Init.ClockDivider = FDCAN_CLOCK_DIV1;
+            hfdcan->Init.NominalPrescaler = 2;
+            hfdcan->Init.NominalSyncJumpWidth = 1;
+            hfdcan->Init.NominalTimeSeg1 = 5;
+            hfdcan->Init.NominalTimeSeg2 = 2;
+            break;
+
+        case ALIGN_CAN_SPEED_1MBPS:
+            hfdcan->Init.ClockDivider = FDCAN_CLOCK_DIV1;
+            hfdcan->Init.NominalPrescaler = 1;
+            hfdcan->Init.NominalSyncJumpWidth = 1;
+            hfdcan->Init.NominalTimeSeg1 = 5;
+            hfdcan->Init.NominalTimeSeg2 = 2;
+            break;
+
+        default:
+            while (true)
+            {
+                // We dont support this can speed yet. Please implement it! :-)
+            }
+            break;
+        }
+        break;
     case 12000000:
         switch (can_speed)
         {
