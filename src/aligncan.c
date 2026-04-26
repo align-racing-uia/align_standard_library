@@ -39,7 +39,9 @@ Align_StatusTypeDef Align_CAN_Init(FDCAN_HandleTypeDef *hfdcan, Align_CAN_SpeedT
         switch (can_speed)
         {
         case ALIGN_CAN_SPEED_500KBPS:
-            hfdcan->Init.ClockDivider = FDCAN_CLOCK_DIV1;
+            #if defined(STM32G4xx) // On G4, the ClockDivider is a member of FDCAN_InitTypeDef, but on H7 it is not. This way, everyone is happy until the another thing goes to shit
+                hfdcan->Init.ClockDivider = FDCAN_CLOCK_DIV1;
+            #endif
             hfdcan->Init.NominalPrescaler = 2;
             hfdcan->Init.NominalSyncJumpWidth = 1;
             hfdcan->Init.NominalTimeSeg1 = 5;
@@ -47,7 +49,9 @@ Align_StatusTypeDef Align_CAN_Init(FDCAN_HandleTypeDef *hfdcan, Align_CAN_SpeedT
             break;
 
         case ALIGN_CAN_SPEED_1MBPS:
-            hfdcan->Init.ClockDivider = FDCAN_CLOCK_DIV1;
+            #if defined(STM32G4xx)
+                hfdcan->Init.ClockDivider = FDCAN_CLOCK_DIV1;
+            #endif
             hfdcan->Init.NominalPrescaler = 1;
             hfdcan->Init.NominalSyncJumpWidth = 1;
             hfdcan->Init.NominalTimeSeg1 = 5;
@@ -66,7 +70,9 @@ Align_StatusTypeDef Align_CAN_Init(FDCAN_HandleTypeDef *hfdcan, Align_CAN_SpeedT
         switch (can_speed)
         {
         case ALIGN_CAN_SPEED_500KBPS:
-            hfdcan->Init.ClockDivider = FDCAN_CLOCK_DIV1;
+            #if defined(STM32G4xx)
+                hfdcan->Init.ClockDivider = FDCAN_CLOCK_DIV1;
+            #endif
             hfdcan->Init.NominalPrescaler = 3;
             hfdcan->Init.NominalSyncJumpWidth = 1;
             hfdcan->Init.NominalTimeSeg1 = 6;
@@ -74,7 +80,9 @@ Align_StatusTypeDef Align_CAN_Init(FDCAN_HandleTypeDef *hfdcan, Align_CAN_SpeedT
             break;
 
         case ALIGN_CAN_SPEED_1MBPS:
-            hfdcan->Init.ClockDivider = FDCAN_CLOCK_DIV1;
+            #if defined(STM32G4xx)
+                hfdcan->Init.ClockDivider = FDCAN_CLOCK_DIV1;
+            #endif
             hfdcan->Init.NominalPrescaler = 1;
             hfdcan->Init.NominalSyncJumpWidth = 1;
             hfdcan->Init.NominalTimeSeg1 = 10;
@@ -93,7 +101,9 @@ Align_StatusTypeDef Align_CAN_Init(FDCAN_HandleTypeDef *hfdcan, Align_CAN_SpeedT
         switch (can_speed)
         {
         case ALIGN_CAN_SPEED_500KBPS:
-            hfdcan->Init.ClockDivider = FDCAN_CLOCK_DIV1;
+            #if defined(STM32G4xx)
+                hfdcan->Init.ClockDivider = FDCAN_CLOCK_DIV1;
+            #endif
             hfdcan->Init.NominalPrescaler = 5;
             hfdcan->Init.NominalSyncJumpWidth = 1;
             hfdcan->Init.NominalTimeSeg1 = 6;
@@ -101,7 +111,9 @@ Align_StatusTypeDef Align_CAN_Init(FDCAN_HandleTypeDef *hfdcan, Align_CAN_SpeedT
             break;
 
         case ALIGN_CAN_SPEED_1MBPS:
-            hfdcan->Init.ClockDivider = FDCAN_CLOCK_DIV1;
+            #if defined(STM32G4xx)
+                hfdcan->Init.ClockDivider = FDCAN_CLOCK_DIV1;
+            #endif
             hfdcan->Init.NominalPrescaler = 2;
             hfdcan->Init.NominalSyncJumpWidth = 1;
             hfdcan->Init.NominalTimeSeg1 = 8;
