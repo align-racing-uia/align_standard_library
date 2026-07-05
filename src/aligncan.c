@@ -1,4 +1,5 @@
 #include "aligncan.h"
+#include <string.h>
 
 #if defined(ALIGN_CAN_USE_BUFFER)
 Align_CAN_BufferTypeDef Align_CAN_Buffer[ALIGN_CAN_BUFFER_SIZE] = {0};
