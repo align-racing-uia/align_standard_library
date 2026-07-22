@@ -165,6 +165,13 @@ Align_StatusTypeDef Align_CAN_Init(FDCAN_HandleTypeDef *hfdcan, Align_CAN_SpeedT
     return ALIGN_OK;
 }
 
+// call each loop iteration, or when a send fails
+void Align_CAN_RecoverBusOff(FDCAN_HandleTypeDef *hfdcan) {
+    if (hfdcan->Instance->PSR & FDCAN_PSR_BO) {
+        hfdcan->Instance->CCCR &= ~FDCAN_CCCR_INIT; 
+    }
+}
+
 Align_StatusTypeDef Align_CAN_Send(FDCAN_HandleTypeDef *hfdcan, uint32_t id, uint8_t *data, uint8_t len, bool ext)
 {
     FDCAN_TxHeaderTypeDef txHeader;
